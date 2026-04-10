@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Selenium Grid Hub
+  selenium-hub:
+    image: selenium/hub:4.18.1
+    ports:
+      - "4444:4444"
+      - "4442:4442"
+      - "4443:4443"
+    environment:
+      SE_SESSION_REQUEST_TIMEOUT: 300
+      SE_SESSION_RETRY_INTERVAL: 5
+      SE_NODE_MAX_INSTANCES: 5
+      SE_NODE_MAX_SESSION: 5
+
+  # Chrome Node
+  chrome-node:
+    image: selenium/node-chrome:4.18.1
+    depends_on:
+      - selenium-hub
+    environment:
+      SE_EVENT_BUS_HOST: selenium-hub
+      SE_EVENT_BUS_PUBLISH_PORT: 4442
+      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+      SE_NODE_MAX_INSTANCES: 3
+      SE_NODE_MAX_SESSION: 3
+      SE_NODE_SESSION_TIMEOUT: 300
+    ports:
+      - "7900:7900"  # VNC для просмотра браузера
+
+  # Test Runner
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - selenium-hub
+    environment:
+      REMOTE: "true"
+      GRID_URL: "http://selenium-hub:4444"
+      HEADLESS: "false"
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./target:/app/target
+    command: mvn clean test -Dremote=true -Dgrid.url=http://selenium-hub:4444
+
+volumes:
+  allure-results:
+

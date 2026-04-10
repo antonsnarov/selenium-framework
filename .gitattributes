@@ -1,0 +1,32 @@
+# Git attributes для правильной обработки файлов
+
+# Bash скрипты
+*.sh text eol=lf
+
+# Docker
+Dockerfile text eol=lf
+.dockerignore text eol=lf
+docker-compose.yml text eol=yaml
+
+# Java
+*.java text eol=lf
+*.properties text eol=lf
+
+# Config файлы
+*.xml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+
+# Markdown
+*.md text eol=lf
+
+# Бинарные файлы
+*.jar binary
+*.class binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.zip binary
+*.tar binary
+

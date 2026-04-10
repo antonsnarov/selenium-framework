@@ -19,3 +19,19 @@ Thumbs.db
 # Logs
 *.log
 logs/
+
+# Allure reports
+allure-results/
+allure-report/
+
+# Docker
+.dockerignore
+Dockerfile
+
+# CI/CD
+.github/
+
+# Environment
+.env
+.env.local
+
