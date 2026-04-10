@@ -1,0 +1,21 @@
+# Maven
+target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.xml.bak
+
+# Allure results (генерируются при запуске)
+target/allure-results/
+target/allure-report/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

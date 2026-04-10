@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!--
+    TestNG Suite конфигурация.
+    thread-count="2" — параллельный запуск 2 тестов одновременно.
+    Каждый тест получает свой WebDriver через ThreadLocal в DriverFactory.
+-->
+<suite name="SauceDemo Test Suite" verbose="1" thread-count="2" parallel="methods">
+
+    <listeners>
+        <!-- Allure слушатель — собирает данные для отчёта -->
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
+    <test name="Login Tests">
+        <classes>
+            <class name="com.saucedemo.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Cart Tests">
+        <classes>
+            <class name="com.saucedemo.tests.CartTest"/>
+        </classes>
+    </test>
+
+    <test name="Checkout Tests">
+        <classes>
+            <class name="com.saucedemo.tests.CheckoutTest"/>
+        </classes>
+    </test>
+
+</suite>
