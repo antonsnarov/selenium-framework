@@ -167,7 +167,7 @@ mvn allure:serve
 |-----------|--------|
 | Selenium  | 4.18.1 |
 | TestNG    | 7.9.0  |
-| Allure    | 2.26.0 |
+| Allure    | 2.24.0 | Отчёты о тестировании |
 | Java      | 17     |
 | Maven     | 3.9.6  |
 | Docker    | latest |

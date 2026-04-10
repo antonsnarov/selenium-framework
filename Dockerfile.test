@@ -1,0 +1,23 @@
+FROM maven:3.9.6-eclipse-temurin-17
+
+WORKDIR /app
+
+# Copy pom.xml first for dependency caching
+COPY pom.xml .
+
+# Download dependencies
+RUN mvn dependency:go-offline -B -q
+
+# Copy source code
+COPY src ./src
+
+# Compile and run single test
+RUN mvn compile test-compile -q
+
+# Run a single test to check if everything works
+RUN mvn test -Dtest=LoginTest -q
+
+# Generate Allure report
+RUN mvn allure:report -q
+
+CMD ["echo", "Tests completed successfully"]

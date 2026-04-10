@@ -1,0 +1,26 @@
+FROM maven:3.9.6-eclipse-temurin-17
+
+WORKDIR /app
+
+# Copy pom.xml
+COPY pom.xml .
+
+# Try to download dependencies
+RUN echo "=== Downloading dependencies ===" && \
+    mvn dependency:go-offline -B && \
+    echo "Dependencies downloaded successfully"
+
+# Copy source
+COPY src ./src
+
+# Try to compile
+RUN echo "=== Compiling ===" && \
+    mvn compile test-compile -q && \
+    echo "Compilation successful"
+
+# Try to run simple test
+RUN echo "=== Running Simple Test ===" && \
+    mvn test -Dtest=SimpleTest -q && \
+    echo "Simple test passed"
+
+CMD ["echo", "Maven test execution completed"]

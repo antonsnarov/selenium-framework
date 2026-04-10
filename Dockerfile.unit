@@ -1,0 +1,30 @@
+FROM maven:3.9.6-eclipse-temurin-17
+
+WORKDIR /app
+
+# Copy pom.xml
+COPY pom.xml .
+
+# Download dependencies
+RUN mvn dependency:go-offline -B -q
+
+# Copy source
+COPY src ./src
+
+# Compile
+RUN mvn compile test-compile -q
+
+# Run only unit tests (no browser required)
+RUN echo "=== Running Unit Tests ===" && \
+    mvn test -Dtest=UnitTest -q && \
+    echo "Unit tests passed!"
+
+# Run simple tests
+RUN echo "=== Running Simple Tests ===" && \
+    mvn test -Dtest=SimpleTest -q && \
+    echo "Simple tests passed!"
+
+# Generate report
+RUN mvn allure:report -q
+
+CMD ["echo", "Unit and simple tests completed successfully!"]

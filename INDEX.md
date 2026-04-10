@@ -175,7 +175,7 @@ docker-compose logs -f             # Логи в реальном времени
 | Selenium | 4.18.1 | Автоматизация браузера |
 | TestNG | 7.9.0 | Фреймворк для тестов |
 | Maven | 3.9.6 | Сборка проекта |
-| Allure | 2.26.0 | Отчёты о тестировании |
+| Allure | 2.24.0 | Отчёты о тестировании |
 | Docker | latest | Контейнеризация |
 | Docker Compose | 3.8 | Оркестрация сервисов |
 | GitHub Actions | — | CI/CD pipeline |
@@ -262,4 +262,3 @@ MIT License — используйте как угодно!
 **Потом изучайте:** [DOCKER_GUIDE.md](./docs/DOCKER_GUIDE.md) и [CI_CD_GUIDE.md](./docs/CI_CD_GUIDE.md) (по часу каждый)
 
 Удачи! 🚀
-
